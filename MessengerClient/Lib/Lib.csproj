@@ -40,8 +40,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="RequestBuilder.cs" />
-    <Compile Include="Sender.cs" />
-    <Compile Include="Server.cs" />
+    <Compile Include="Response.cs" />
+    <Compile Include="ResponseParser.cs" />
+    <Compile Include="ResponseQueue.cs" />
+    <Compile Include="ServerConnection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
