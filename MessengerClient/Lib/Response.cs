@@ -5,13 +5,13 @@ using System.Text;
 
 namespace Lib
 {
-    enum ResponseType : ushort
+    public enum ResponseType : ushort
     {
         SignUp = 0x00,
         LogIn = 0x01,
     };
 
-    class Response
+    public class Response
     {
         string[] body;
         ResponseType type;

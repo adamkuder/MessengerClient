@@ -5,6 +5,7 @@ using System.Text;
 using System.Net.Sockets;
 using System.Net;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace Lib
 {
@@ -16,6 +17,7 @@ namespace Lib
         TcpClient socket;
         NetworkStream stream;
         Thread listenerThread;
+        ResponseQueue responseQueue;
 
         public event ResponseEventHandler ResponseAvailable;
 
@@ -25,6 +27,7 @@ namespace Lib
             Port = port;
 
             listenerThread = new Thread(new ThreadStart(Listen));
+            responseQueue = new ResponseQueue();
 
             Open();
         }
@@ -44,8 +47,22 @@ namespace Lib
             {
                 buffer = new byte[4096];
                 stream.Read(buffer, 0, 4096);
-                ResponseAvailable?.Invoke(this, new ResponseEventArgs(buffer));
+                responseQueue.Add(buffer);
+                // ResponseAvailable?.Invoke(this, new ResponseEventArgs(buffer));
             }
+        }
+
+        public void Send(string request)
+        {
+            byte[] bytes = Encoding.UTF8.GetBytes(request);
+
+            stream.Write(bytes, 0, bytes.Length);
+        }
+
+        public async Task<Response> GetResponse(ResponseType type)
+        {
+            //return await Task.FromResult(responseQueue.Get(type));
+            return await Task.FromResult(responseQueue.Get(type));
         }
     }
 

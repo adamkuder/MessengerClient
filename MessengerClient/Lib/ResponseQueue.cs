@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Lib
 {
@@ -14,14 +15,26 @@ namespace Lib
             queue = new List<Response>();
         }
 
-        public void Add(object sender, ResponseEventArgs e)
+        public void Add(byte[] data) // (object sender, ResponseEventArgs e)
         {
-            queue.Add(new Response(e.data));
+            queue.Add(new Response(data));
         }
 
         public Response Get(ResponseType type)
         {
-            return queue.Find(response => (response.Type == type));
+            Response response;
+
+            while (true)
+            {
+                if (queue.Any((Response r) => (r.Type == type)))
+                {
+                    response = queue.Find(r => r.Type == type);
+                    queue.Remove(response);
+                    break;
+                }
+            }
+
+            return response;
         }
     }
 }
