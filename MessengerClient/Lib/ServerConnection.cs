@@ -48,7 +48,6 @@ namespace Lib
                 buffer = new byte[4096];
                 stream.Read(buffer, 0, 4096);
                 responseQueue.Add(buffer);
-                // ResponseAvailable?.Invoke(this, new ResponseEventArgs(buffer));
             }
         }
 
@@ -61,7 +60,6 @@ namespace Lib
 
         public async Task<Response> GetResponse(ResponseType type)
         {
-            //return await Task.FromResult(responseQueue.Get(type));
             return await Task.FromResult(responseQueue.Get(type));
         }
     }

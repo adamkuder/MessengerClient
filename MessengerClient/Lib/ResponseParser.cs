@@ -27,6 +27,8 @@ namespace Lib
                 }
             }
 
+            result.Add(builder.ToString());
+
             return result.ToArray();
         }
     }

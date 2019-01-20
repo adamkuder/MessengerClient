@@ -15,7 +15,7 @@ namespace Lib
             queue = new List<Response>();
         }
 
-        public void Add(byte[] data) // (object sender, ResponseEventArgs e)
+        public void Add(byte[] data)
         {
             queue.Add(new Response(data));
         }
@@ -26,11 +26,18 @@ namespace Lib
 
             while (true)
             {
-                if (queue.Any((Response r) => (r.Type == type)))
+                try
                 {
-                    response = queue.Find(r => r.Type == type);
-                    queue.Remove(response);
-                    break;
+                    if (queue.Any((Response r) => (r.Type == type)))
+                    {
+                        response = queue.Find(r => r.Type == type);
+                        queue.Remove(response);
+                        break;
+                    }
+                }
+                catch (InvalidOperationException e)
+                {
+                    // in case a Response gets inserted while the Queue is being searched
                 }
             }
 
