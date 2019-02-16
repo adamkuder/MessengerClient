@@ -7,32 +7,37 @@ namespace Lib
 {
     public enum ResponseType : ushort
     {
-        SignUp = 0x00,
-        LogIn = 0x01,
+        SignUp      = 0x00,
+        LogIn       = 0x01,
+        GetContacts = 0x03,
+        AddContact  = 0x04,
     };
 
     public class Response
     {
-        string[] body;
         ResponseType type;
+        ResponseItem[] body;        
 
         #region Properties
         public ResponseType Type
         {
             get { return type; }
         }
+
+        public int Length
+        {
+            get { return body.Length; }
+        }
         #endregion Properties
 
         public Response(byte[] data)
         {
-            char[] decodedData = Encoding.UTF8.GetChars(data);
-
-            type = (ResponseType)decodedData[0];
-            body = ResponseParser.Parse(decodedData.Skip(1));
+            type = (ResponseType)data[0];
+            body = ResponseParser.Parse(data.Skip(1));
         }
 
         #region Operators
-        public string this[int i]
+        public ResponseItem this[int i]
         {
             get
             {

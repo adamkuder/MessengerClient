@@ -42,20 +42,19 @@ namespace Lib
         void Listen()
         {
             byte[] buffer;
+            int bytesRead;
 
             while (true)
             {
                 buffer = new byte[4096];
-                stream.Read(buffer, 0, 4096);
-                responseQueue.Add(buffer);
+                bytesRead = stream.Read(buffer, 0, 4096);
+                responseQueue.Add(buffer.Take(bytesRead).ToArray());
             }
         }
 
-        public void Send(string request)
+        public void Send(byte[] request)
         {
-            byte[] bytes = Encoding.UTF8.GetBytes(request);
-
-            stream.Write(bytes, 0, bytes.Length);
+            stream.Write(request, 0, request.Length);
         }
 
         public async Task<Response> GetResponse(ResponseType type)
