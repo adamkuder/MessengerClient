@@ -37,5 +37,13 @@ namespace Lib
             else
                 return (uint)responseItem.Bytes[0];
         }
+
+        public static explicit operator bool(ResponseItem responseItem)
+        {
+            if (responseItem.Bytes.Length > 1)
+                throw new ArgumentException("Item too large to convert to boolean.");
+            else
+                return responseItem.Bytes[0] != (byte)0;
+        }
     }
 }

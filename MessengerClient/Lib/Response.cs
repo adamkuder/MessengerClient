@@ -7,10 +7,12 @@ namespace Lib
 {
     public enum ResponseType : ushort
     {
-        SignUp      = 0x00,
-        LogIn       = 0x01,
-        GetContacts = 0x03,
-        AddContact  = 0x04,
+        SignUp       = 0x00,
+        Message      = 0x02,
+        LogIn        = 0x01,
+        GetContacts  = 0x03,
+        AddContact   = 0x04,
+        StatusUpdate = 0x05,
     };
 
     public class Response

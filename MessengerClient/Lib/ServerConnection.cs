@@ -19,7 +19,8 @@ namespace Lib
         Thread listenerThread;
         ResponseQueue responseQueue;
 
-        public event ResponseEventHandler ResponseAvailable;
+        public event NotificationEventHandler StatusUpdateAvailable;
+        public event NotificationEventHandler MessageAvailable;
 
         public ServerConnection(string address, int port)
         {
@@ -48,7 +49,20 @@ namespace Lib
             {
                 buffer = new byte[4096];
                 bytesRead = stream.Read(buffer, 0, 4096);
-                responseQueue.Add(buffer.Take(bytesRead).ToArray());
+                Response response = new Response(buffer.Take(bytesRead).ToArray());
+
+                if (response.Type == ResponseType.StatusUpdate)
+                {
+                    StatusUpdateAvailable?.Invoke(this, new NotificationEventArgs(response));
+                }
+                else if (response.Type == ResponseType.Message)
+                {
+                    MessageAvailable?.Invoke(this, new NotificationEventArgs(response));
+                }
+                else
+                {
+                    responseQueue.Add(response);
+                }
             }
         }
 
@@ -63,15 +77,15 @@ namespace Lib
         }
     }
 
-    public delegate void ResponseEventHandler(object sender, ResponseEventArgs e);
+    public delegate void NotificationEventHandler(object sender, NotificationEventArgs e);
 
-    public class ResponseEventArgs : EventArgs
+    public class NotificationEventArgs : EventArgs
     {
-        public readonly byte[] data;
+        public readonly Response notification;
 
-        public ResponseEventArgs(byte[] data)
+        public NotificationEventArgs(Response notification)
         {
-            this.data = data;
+            this.notification = notification;
         }
     }
 }
