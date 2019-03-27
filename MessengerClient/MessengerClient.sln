@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.329
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessengerClient", "MessengerClient\MessengerClient.csproj", "{73B34D86-6CE0-4FC4-AF6B-91455CD76DC4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessengerClient", "MessengerClient\MessengerClient.csproj", "{9809DA5A-70A6-48F8-A5DF-BC0EB56AE0A8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lib", "Lib\Lib.csproj", "{4D13E22F-B9AE-4E71-A7C8-E5C3B9087A85}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +13,19 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{73B34D86-6CE0-4FC4-AF6B-91455CD76DC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{73B34D86-6CE0-4FC4-AF6B-91455CD76DC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{73B34D86-6CE0-4FC4-AF6B-91455CD76DC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{73B34D86-6CE0-4FC4-AF6B-91455CD76DC4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9809DA5A-70A6-48F8-A5DF-BC0EB56AE0A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9809DA5A-70A6-48F8-A5DF-BC0EB56AE0A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9809DA5A-70A6-48F8-A5DF-BC0EB56AE0A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9809DA5A-70A6-48F8-A5DF-BC0EB56AE0A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D13E22F-B9AE-4E71-A7C8-E5C3B9087A85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D13E22F-B9AE-4E71-A7C8-E5C3B9087A85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D13E22F-B9AE-4E71-A7C8-E5C3B9087A85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D13E22F-B9AE-4E71-A7C8-E5C3B9087A85}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {AB72FC5B-1E4E-4577-9C6D-F09C77F2C346}
+		SolutionGuid = {80532B5E-07EB-4B81-922E-7228F675F462}
 	EndGlobalSection
 EndGlobal

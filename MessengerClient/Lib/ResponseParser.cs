@@ -9,27 +9,27 @@ namespace Lib
     {
         const char DELIMITER = '\r';
 
-        public static ResponseItem[] Parse(IEnumerable<byte> body)
+        public static string[] Parse(IEnumerable<char> body)
         {
-            List<byte> byteList = new List<byte>();
-            List<ResponseItem> responseItemList = new List<ResponseItem>();
+            StringBuilder builder = new StringBuilder();
+            List<string> result = new List<string>();
 
-            foreach (byte b in body)
+            foreach (char c in body)
             {
-                if (b != DELIMITER)
+                if (c != DELIMITER)
                 {
-                    byteList.Add(b);
+                    builder.Append(c);
                 }
                 else
                 {
-                    responseItemList.Add(new ResponseItem(byteList.ToArray()));
-                    byteList.Clear();
+                    result.Add(builder.ToString());
+                    builder.Clear();
                 }
             }
 
-            responseItemList.Add(new ResponseItem(byteList.ToArray()));
+            result.Add(builder.ToString());
 
-            return responseItemList.ToArray();
+            return result.ToArray();
         }
     }
 }

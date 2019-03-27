@@ -15,9 +15,9 @@ namespace Lib
             queue = new List<Response>();
         }
 
-        public void Add(Response response)
+        public void Add(byte[] data)
         {
-            queue.Add(response);
+            queue.Add(new Response(data));
         }
 
         public Response Get(ResponseType type)
